@@ -1,5 +1,3 @@
-# 1. Merge the training and the test sets to create one data set
-
 ## Read test files
 test_data <- read.table("UCI HAR Dataset/test/X_test.txt")
 test_activity <- read.table("UCI HAR Dataset/test/y_test.txt")
@@ -14,10 +12,6 @@ train_subject <- read.table("UCI HAR Dataset/train/subject_train.txt")
 test <- cbind(test_subject, test_activity, test_data)
 train <- cbind(train_subject, train_activity, train_data)
 dataset <- rbind(train, test)
-
-
-
-# 2. Extract only the measurements on the mean and standard deviation for each measurement
 
 ## Read column names
 features <- read.table("UCI HAR Dataset/features.txt")
@@ -47,10 +41,6 @@ names(dataset) <- column_names
 ## ("Subject" and "Activity" columns)
 selection <- dataset[, grep("Subject|Activity|mean_|std_", column_names)]
 
-
-
-# 3. Use descriptive activity names to name the activities in the data set
-
 ## Read activity labels and rename columns
 activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 names(activity_labels) <- c("Nrs", "Activity")
@@ -58,17 +48,6 @@ names(activity_labels) <- c("Nrs", "Activity")
 ## Replace labels by activity names in 'selection' data set created in 2.
 mergedData <- merge(activity_labels, selection, by.x="Nrs", by.y="Activity", all=TRUE)
 mergedData$Nrs <- NULL
-
-
-
-# 4. Appropriately label the data set with descriptive variable names
-
-## Column names cleaned in 2. are explicit enough and are detailed in Codebook
-
-
-
-# 5. From the data set in step 4, creates a second, independent tidy data set 
-# with the average of each variable for each activity and each subject
 
 ## Average values grouped by "Activity" and "Subject" using plyr package
 require(plyr)
