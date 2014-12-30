@@ -19,5 +19,5 @@ Repo for Getting and Cleaning Data Assignment
 * Cleans column names from undesirable characters
 * Extracts only the measurements on the mean and standard deviation for each measurement
 * Replaces activity labels by activity names
-* Creates a separate data set with the average of each variable for each activity and each subject
+* Creates a separate data set with the average of each variable for each activity and each subject using plyr package
 * Writes tidy data set in txt format
